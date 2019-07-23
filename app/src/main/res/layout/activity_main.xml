@@ -18,6 +18,30 @@
             android:hint="Nome do produto" />
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:id="@+id/tvCores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cores" />
+
+    <CheckBox
+        android:id="@+id/cbBranco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Branco" />
+
+    <CheckBox
+        android:id="@+id/cbVerde"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verde" />
+
+    <CheckBox
+        android:id="@+id/cbVermelho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vermelho" />
+
     <Button
         android:id="@+id/btEnviar"
         android:layout_width="match_parent"
