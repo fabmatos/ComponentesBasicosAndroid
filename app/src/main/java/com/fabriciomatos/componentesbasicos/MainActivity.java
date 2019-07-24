@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.mViewHolder.nomeProduto = findViewById(R.id.etNomeProduto);
         this.mViewHolder.btEnviar = findViewById(R.id.btEnviar);
         this.mViewHolder.tvResultado = findViewById(R.id.tvResultadoCores);
         this.mViewHolder.cbBranco = findViewById(R.id.cbBranco);
@@ -33,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.mViewHolder.cbVermelho = findViewById(R.id.cbVermelho);
         this.mViewHolder.tvDisponibilidadeProduto = findViewById(R.id.tvResultadoDisponibilidade);
         this.mViewHolder.rgEstoque = findViewById(R.id.rgEstoque);
-//        this.mViewHolder.rbDisponivelSim = findViewById(R.id.rbSIm);
-//        this.mViewHolder.rbDisponivelNao = findViewById(R.id.rbNao);
 
         this.mViewHolder.btEnviar.setOnClickListener(this);
         this.verificaRadioButton();
@@ -44,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         check.clear();
-        //this.mViewHolder.tvResultado.setText(this.mViewHolder.nomeProduto.getText().toString());
         if(this.mViewHolder.cbBranco.isChecked()){
             check.add(this.mViewHolder.cbBranco.getText().toString());
         }
@@ -90,15 +86,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private class ViewHolder{
 
-        private EditText nomeProduto;
         private Button btEnviar;
         private TextView tvResultado;
         private CheckBox cbBranco;
         private CheckBox cbVerde;
         private CheckBox cbVermelho;
         private TextView tvDisponibilidadeProduto;
-//        private RadioButton rbDisponivelSim;
-//        private RadioButton rbDisponivelNao;
         private RadioGroup rgEstoque;
     }
 }
