@@ -1,5 +1,6 @@
 package com.fabriciomatos.componentesbasicos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         this.mViewHolder.btEnviar = findViewById(R.id.btEnviar);
+        this.mViewHolder.btProximaLicao = findViewById(R.id.btProximaLicao);
         this.mViewHolder.tvResultado = findViewById(R.id.tvResultadoCores);
         this.mViewHolder.cbBranco = findViewById(R.id.cbBranco);
         this.mViewHolder.cbVerde = findViewById(R.id.cbVerde);
@@ -34,38 +36,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.mViewHolder.rgEstoque = findViewById(R.id.rgEstoque);
 
         this.mViewHolder.btEnviar.setOnClickListener(this);
+        this.mViewHolder.btProximaLicao.setOnClickListener(this);
         this.verificaRadioButton();
     }
 
     @Override
     public void onClick(View v) {
 
-        check.clear();
-        if(this.mViewHolder.cbBranco.isChecked()){
-            check.add(this.mViewHolder.cbBranco.getText().toString());
-        }
-        if(this.mViewHolder.cbVerde.isChecked()){
-            check.add(this.mViewHolder.cbVerde.getText().toString());
-        }
-        if(this.mViewHolder.cbVermelho.isChecked()){
-            check.add(this.mViewHolder.cbVermelho.getText().toString());
-        }
-
-        String checkString = "Cores: ";
-
-        for(int i = 0; i < check.size();i++){
-            if ( i < check.size()){
-                checkString += check.get(i) + " ";
-            } else {
-                checkString += check.get(i);
+        if(v.getId() == R.id.btEnviar){
+            check.clear();
+            if(this.mViewHolder.cbBranco.isChecked()){
+                check.add(this.mViewHolder.cbBranco.getText().toString());
+            }
+            if(this.mViewHolder.cbVerde.isChecked()){
+                check.add(this.mViewHolder.cbVerde.getText().toString());
+            }
+            if(this.mViewHolder.cbVermelho.isChecked()){
+                check.add(this.mViewHolder.cbVermelho.getText().toString());
             }
 
+            String checkString = "Cores: ";
+
+            for(int i = 0; i < check.size();i++){
+                if ( i < check.size()){
+                    checkString += check.get(i) + " ";
+                } else {
+                    checkString += check.get(i);
+                }
+
+            }
+            if(!checkString.isEmpty()){
+                this.mViewHolder.tvResultado.setText(checkString);
+            } else {
+                this.mViewHolder.tvResultado.setText("Nenhuma cor selecionada!");
+            }
         }
-        if(!checkString.isEmpty()){
-            this.mViewHolder.tvResultado.setText(checkString);
-        } else {
-            this.mViewHolder.tvResultado.setText("Nenhuma cor selecionada!");
+
+        if(v.getId() == R.id.btProximaLicao){
+            Intent intent = new Intent(this, AlcoolGasolinaAppActivity.class);
+            startActivity(intent);
         }
+
     }
 
     private void verificaRadioButton(){
@@ -87,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private class ViewHolder{
 
         private Button btEnviar;
+        private Button btProximaLicao;
         private TextView tvResultado;
         private CheckBox cbBranco;
         private CheckBox cbVerde;
