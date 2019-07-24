@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ViewHolder mViewHolder = new ViewHolder();
     private List<String> check = new ArrayList<String>();
+    private String radioDisponibilidadeDescricao = "Produto disponível: ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +27,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         this.mViewHolder.nomeProduto = findViewById(R.id.etNomeProduto);
         this.mViewHolder.btEnviar = findViewById(R.id.btEnviar);
-        this.mViewHolder.tvResultado = findViewById(R.id.tvResultado);
+        this.mViewHolder.tvResultado = findViewById(R.id.tvResultadoCores);
         this.mViewHolder.cbBranco = findViewById(R.id.cbBranco);
         this.mViewHolder.cbVerde = findViewById(R.id.cbVerde);
         this.mViewHolder.cbVermelho = findViewById(R.id.cbVermelho);
+        this.mViewHolder.tvDisponibilidadeProduto = findViewById(R.id.tvResultadoDisponibilidade);
+        this.mViewHolder.rgEstoque = findViewById(R.id.rgEstoque);
+//        this.mViewHolder.rbDisponivelSim = findViewById(R.id.rbSIm);
+//        this.mViewHolder.rbDisponivelNao = findViewById(R.id.rbNao);
 
         this.mViewHolder.btEnviar.setOnClickListener(this);
+        this.verificaRadioButton();
     }
 
     @Override
@@ -47,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             check.add(this.mViewHolder.cbVermelho.getText().toString());
         }
 
-        String checkString = "";
+        String checkString = "Cores: ";
 
         for(int i = 0; i < check.size();i++){
             if ( i < check.size()){
@@ -60,9 +68,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(!checkString.isEmpty()){
             this.mViewHolder.tvResultado.setText(checkString);
         } else {
-            this.mViewHolder.tvResultado.setText("Nenhum check foi selecionado!");
+            this.mViewHolder.tvResultado.setText("Nenhuma cor selecionada!");
         }
+    }
 
+    private void verificaRadioButton(){
+
+        this.mViewHolder.rgEstoque.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.rbSIm){
+                    radioDisponibilidadeDescricao = "Produto disponível: ";
+                    mViewHolder.tvDisponibilidadeProduto.setText(radioDisponibilidadeDescricao += "Sim");
+                }else if(checkedId == R.id.rbNao){
+                    radioDisponibilidadeDescricao = "Produto disponível: ";
+                    mViewHolder.tvDisponibilidadeProduto.setText(radioDisponibilidadeDescricao += "Não");
+                }
+            }
+        });
     }
 
     private class ViewHolder{
@@ -73,5 +96,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         private CheckBox cbBranco;
         private CheckBox cbVerde;
         private CheckBox cbVermelho;
+        private TextView tvDisponibilidadeProduto;
+//        private RadioButton rbDisponivelSim;
+//        private RadioButton rbDisponivelNao;
+        private RadioGroup rgEstoque;
     }
 }

@@ -42,6 +42,31 @@
         android:layout_height="wrap_content"
         android:text="Vermelho" />
 
+    <TextView
+        android:id="@+id/tvDisponivelEmEstoque"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disponível em estoque" />
+
+    <RadioGroup
+        android:id="@+id/rgEstoque"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rbSIm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sim" />
+
+        <RadioButton
+            android:id="@+id/rbNao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Não" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btEnviar"
         android:layout_width="match_parent"
@@ -49,7 +74,12 @@
         android:text="Enviar" />
 
     <TextView
-        android:id="@+id/tvResultado"
+        android:id="@+id/tvResultadoCores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvResultadoDisponibilidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
